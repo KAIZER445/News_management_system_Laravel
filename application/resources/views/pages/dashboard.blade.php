@@ -1,6 +1,7 @@
 @extends('components.template')
 
 @section('rawtemp')
+@include('components.navbar')
 @include('components.asidebar')
 
 <main id="main" class="main">
