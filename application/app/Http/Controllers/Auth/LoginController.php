@@ -25,7 +25,7 @@ class LoginController extends Controller
         $user = User::where('username', $username)->first();
         if ($user && $user->password === $password) {
             auth()->login($user);
-            return redirect()->route('welcome');
+            return redirect()->route('dashboard');
         } else {
             return back()->with('error', 'Invalid credentials');
         }
