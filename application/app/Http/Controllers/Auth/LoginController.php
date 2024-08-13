@@ -21,14 +21,10 @@ class LoginController extends Controller
 
         $username = $data['username'];
         $password = $data['password'];
-
-        $user = User::where('username', $username)->first();
-        if ($user && $user->password === $password) {
-            auth()->login($user);
+        if(auth()->attempt(['username'=>$username,'password'=>$password])){
             return redirect()->route('dashboard');
-        } else {
+        }else{
             return back()->with('error', 'Invalid credentials');
         }
     }
-    
 }

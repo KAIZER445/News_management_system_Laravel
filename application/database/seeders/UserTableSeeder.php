@@ -17,7 +17,7 @@ class UserTableSeeder extends Seeder
             [
                 'username' => 'admin',
                 'email'=> 'admin@gmail.com',
-                'password'=> 'admin123',
+                'password'=> bcrypt('admin123'),
                 'gender'=> 'male',
                 'role'=> 'admin',
                 'image'=> '',
@@ -26,7 +26,7 @@ class UserTableSeeder extends Seeder
             [
                 'username' => 'user',
                 'email'=> 'user@gmail.com',
-                'password'=> 'user123',
+                'password'=> bcrypt('user123'),
                 'gender'=> 'female',
                 'role'=> 'user',
                 'image'=> '',
