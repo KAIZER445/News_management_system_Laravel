@@ -17,21 +17,24 @@
                     <h5 class="card-title text-center pb-0 fs-4">Login to Your Account</h5>
                     <p class="text-center small">Enter your username & password to login</p>
                   </div>
-                  {{$errors}}
                   <form class="row g-3" method="POST" action="{{route('login')}}">
                     @include('components.loginmessages')
                     @csrf
                     <div class="col-12">
-                      <label for="yourUsername" class="form-label">Username</label>
+                      <label for="yourUsername" class="form-label">Username
+                        <span class="text-danger">{{$errors->first('username')}}</span>
+                      </label>
                       <div class="input-group">
                         <span class="input-group-text" id="inputGroupPrepend"><i class="bi bi-person-circle"></i></span>
-                        <input type="text" name="username" class="form-control" id="yourUsername">
+                        <input type="text" name="username" class="form-control" id="yourUsername" value="{{ old('username') }}">
                         <div class="invalid-feedback">Please enter your username.</div>
                       </div>
                     </div>
 
                     <div class="col-12">
-                      <label for="yourPassword" class="form-label">Password</label>
+                      <label for="yourPassword" class="form-label">Password
+                        <span class="text-danger">{{$errors->first('password')}}</span>
+                      </label>
                       <div class="input-group">
                         <span class="input-group-text" id="inputGroupPrepend"><i class="bi bi-key"></i></span>
                         <input type="password" name="password" class="form-control" id="yourPassword">
