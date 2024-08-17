@@ -8,8 +8,15 @@ use App\Models\User\user;
 
 class LoginController extends Controller
 {
+    
+    protected $pagePath = 'pages.backend.';
     public function login(){
-        return view('pages.login');
+                if(auth()->check()){
+            return redirect()->route('dashboard');
+        }else{
+            return view($this->pagePath.'login');
+        }
+        
     }
 
     public function store(Request $request){

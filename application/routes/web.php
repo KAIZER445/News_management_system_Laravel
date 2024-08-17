@@ -6,7 +6,7 @@ use Illuminate\Support\Facades\Route;
 
 
 Route::get('/', function () {
-    return view('pages.welcome');
+    return view('pages.backend.welcome');
 })->name('welcome');
 
 Route::get('login',[LoginController::class,'login'])->name('login');
