@@ -3,12 +3,27 @@
 namespace App\Http\Controllers\Backend;
 
 use App\Http\Controllers\Controller;
+use App\Models\User\User;
 use Illuminate\Http\Request;
 use View;
 
 class UserController extends Controller
 {
     protected $pagePath = 'pages.backend.';
+
+    private function deleteFile($userId){
+        $user = User::findOrFail($userId);
+        $filePath = public_path($user->image);
+        if($user->image){
+            $ImagePath = public_path($user->image);
+            if(file_exists($ImagePath)){
+                unlink($ImagePath);
+                return true;
+            }else{
+                return true;
+            }
+        }
+    }
     public function account(Request $request){
         if($request->isMethod('get')){
             // $user = auth()->user();
@@ -23,14 +38,17 @@ class UserController extends Controller
                 $ext = $file->getClientOriginalExtension();
                 $fileName = md5(microtime()) . '.' . $ext;
                 $uploadPath = public_path('uploads/users/');
-                if ($file->move($uploadPath, $fileName)) {
+                if ($this->deleteFile($user->id) && $file->move($uploadPath, $fileName)) {
                     $user->image = "uploads/users/" . $fileName;
-                    return redirect()->back()->with('success', 'Image upload failed');
+                    
                 } else {
                     return redirect()->back()->with('error', 'Image upload failed');
                 }
             }
-            $user->save();
+            if($user->save()){
+                return redirect()->back()->with('success', 'user account updated');
+            }
+            
         }
     }
 }

@@ -24,7 +24,7 @@
               </div>
               <div class="form-group mb-2">
                 <label for="email">Email</label>
-                <input type="text" id="email" name="email" value="{{auth()->user()->email}}" class="form-control">
+                <input type="text" id="email" name="email" value="{{auth()->user()->email}}" disabled readonly class="form-control ">
               </div>
               <div class="form-group mb-2">
                 <label for="Gender">Gender</label>
