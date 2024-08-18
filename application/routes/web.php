@@ -2,10 +2,12 @@
 
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\Backend\DashboardController;
+use App\Http\Controllers\Backend\UserController;
 use Illuminate\Support\Facades\Route;
 
 
 Route::get('/', function () {
+    
     return view('pages.backend.welcome');
 })->name('welcome');
 
@@ -16,6 +18,7 @@ Route::post('login', [LoginController::class, 'store'])->name('login.store');
 Route::group(['namespace'=>'Backend','prefix'=>'company-backend','middleware'=>'auth'], function(){
     Route::get('dashboard',[DashboardController::class,'index'])->name('dashboard');
     Route::get('logout',[LoginController::class,'logout'])->name('logout');
+    Route::any('Account-setting',[UserController::class,'account'])->name('account');
 });
 
 
