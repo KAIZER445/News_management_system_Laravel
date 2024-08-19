@@ -11,6 +11,13 @@ class UserController extends Controller
 {
     protected $pagePath = 'pages.backend.';
 
+
+    public function index(){
+        $userID = auth()->user()->id;
+        $usersData = User::where('id','!=',$userID)->get();
+        return view($this->pagePath.'users.index',compact('usersData'));
+    }
+
     private function deleteFile($userId){
         $user = User::findOrFail($userId);
         $filePath = public_path($user->image);

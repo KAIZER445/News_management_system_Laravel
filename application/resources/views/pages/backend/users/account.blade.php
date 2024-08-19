@@ -14,7 +14,7 @@
       <div class="col-lg-12">
         <div class="card">
           <div class="card-body">
-            <h5 class="card-title">Reports </h5>
+            <h5 class="card-title">Update page </h5>
             <form action="" method="POST" enctype="multipart/form-data">
               @include('components.loginmessages')
               @csrf

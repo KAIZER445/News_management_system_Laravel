@@ -18,7 +18,10 @@ Route::post('login', [LoginController::class, 'store'])->name('login.store');
 Route::group(['namespace'=>'Backend','prefix'=>'company-backend','middleware'=>'auth'], function(){
     Route::get('dashboard',[DashboardController::class,'index'])->name('dashboard');
     Route::get('logout',[LoginController::class,'logout'])->name('logout');
-    Route::any('Account-setting',[UserController::class,'account'])->name('account');
+    Route::group(['prefix'=>'users'], function(){
+        Route::any('account-setting',[UserController::class,'account'])->name('account');
+        Route::any('/',[UserController::class,'index'])->name('account.index');
+    });
 });
 
 
