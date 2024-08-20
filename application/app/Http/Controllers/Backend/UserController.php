@@ -20,15 +20,14 @@ class UserController extends Controller
     private function deleteFile($userId){
         $user = User::findOrFail($userId);
         $filePath = public_path($user->image);
-        if($user->image){
-            $ImagePath = public_path($user->image);
-            if(file_exists($ImagePath)){
-                unlink($ImagePath);
+
+            if(file_exists($filePath) && is_file($filePath)){
+                unlink($filePath);
                 return true;
             }else{
                 return true;
             }
-        }
+        
     }
     public function account(Request $request){
         if($request->isMethod('get')){
@@ -72,7 +71,7 @@ class UserController extends Controller
 
     public function delete($id){
         $user = User::findOrFail($id);
-        if($this->deleteFile($user->id) && $user->delete()){ //if i remove the code for deleting the file then only this function works
+        if($this->deleteFile($user->id) && $user->delete()){
             return redirect()->back()->with('success','user deleted sucessfully');
         }else{
             return redirect()->back()->with('error','User delete failed');
