@@ -27,16 +27,23 @@
                     <th>Action</th>
                   </tr>
                 </thead>
+                <form action="{{route('update-user-status')}}" method="POST">
+                  @csrf
                 @foreach ($usersData as $key=>$user)
-                    
-                
                 <tbody>
                   <tr>
                     <td>{{++$key}}</td>
                     <td>{{$user->username}}</td>
                     <td>{{$user->email}}</td>
                     <td>{{$user->gender}}</td>
-                    <td>{{$user->role}}</td>
+                    <td>
+                      <input type="hidden" name="criteria" value="{{$user->id}}">
+                      @if ($user->role=="admin")
+                          <button class="badge bg-primary" name="admin">Admin</button>
+                        @else
+                        <button class="badge bg-success" name="user">User</button>
+                      @endif
+                    </td>
                     <td>{{$user->image}}</td>
                     <td>{{$user->created_at->diffForHumans()}}</td>
                     @if(auth()->user()->role=='admin')
@@ -45,6 +52,7 @@
                   </tr>
                 </tbody>
                 @endforeach
+              </form>
               </table>
           </div>
         </div>

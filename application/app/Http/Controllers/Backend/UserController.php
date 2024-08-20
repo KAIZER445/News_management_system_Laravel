@@ -58,4 +58,16 @@ class UserController extends Controller
             
         }
     }
+
+    public function status(Request $request){
+        $id = $request->criteria;
+        $user = User::findOrFail($id);
+        if($user->role=='user'){
+            $user->role='admin';
+        }else{
+            $user->role='user';
+        }
+        $user->save();
+        return redirect()->back()->with('success','User status updated successfully');
+    }
 }
