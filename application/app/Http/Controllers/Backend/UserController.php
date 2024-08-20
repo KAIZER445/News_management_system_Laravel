@@ -11,7 +11,6 @@ class UserController extends Controller
 {
     protected $pagePath = 'pages.backend.';
 
-
     public function index(){
         $userID = auth()->user()->id;
         $usersData = User::where('id','!=',$userID)->get();
@@ -60,7 +59,7 @@ class UserController extends Controller
     }
 
     public function status(Request $request){
-        $id = $request->criteria;
+        $id = $request->userid;
         $user = User::findOrFail($id);
         if($user->role=='user'){
             $user->role='admin';
@@ -69,5 +68,14 @@ class UserController extends Controller
         }
         $user->save();
         return redirect()->back()->with('success','User status updated successfully');
+    }
+
+    public function delete($id){
+        $user = User::findOrFail($id);
+        if($this->deleteFile($user->id) && $user->delete()){ //if i remove the code for deleting the file then only this function works
+            return redirect()->back()->with('success','user deleted sucessfully');
+        }else{
+            return redirect()->back()->with('error','User delete failed');
+        }
     }
 }

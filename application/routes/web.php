@@ -21,8 +21,7 @@ Route::group(['namespace'=>'Backend','prefix'=>'company-backend','middleware'=>'
     Route::group(['prefix'=>'users'], function(){
         Route::any('account-setting',[UserController::class,'account'])->name('account');
         Route::any('update-user-status',[UserController::class,'status'])->name('update-user-status');
-        Route::any('/',[UserController::class,'index'])->name('account.index');
+        Route::any('users-list',[UserController::class,'index'])->name('account.index');
+        Route::any('delete-users/{id}',[UserController::class,'delete'])->name('delete-users');
     });
 });
-
-

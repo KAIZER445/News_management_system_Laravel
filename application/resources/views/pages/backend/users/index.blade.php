@@ -28,6 +28,7 @@
                   </tr>
                 </thead>
                 <form action="{{route('update-user-status')}}" method="POST">
+                  @include('components.loginmessages')
                   @csrf
                 @foreach ($usersData as $key=>$user)
                 <tbody>
@@ -37,17 +38,20 @@
                     <td>{{$user->email}}</td>
                     <td>{{$user->gender}}</td>
                     <td>
-                      <input type="hidden" name="criteria" value="{{$user->id}}">
+                      <input type="hidden" name="userid" value="{{$user->id}}">
                       @if ($user->role=="admin")
-                          <button class="badge bg-primary" name="admin">Admin</button>
+                          <button class="btn btn-primary btn-sm" name="admin">Admin</button>
                         @else
-                        <button class="badge bg-success" name="user">User</button>
+                        <button class="btn btn-success btn-sm" name="user">User</button>
                       @endif
                     </td>
                     <td>{{$user->image}}</td>
                     <td>{{$user->created_at->diffForHumans()}}</td>
                     @if(auth()->user()->role=='admin')
-                    <td><a href="">delete</a></td>
+                    <td><a href="{{route('delete-users', $user->id)}}" 
+                     onclick="return confirm('are you sure ?')" 
+                     class="btn btn-danger btn-sm"
+                     >delete</a></td>
                     @endif
                   </tr>
                 </tbody>

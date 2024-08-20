@@ -31,6 +31,16 @@ class UserTableSeeder extends Seeder
                 'role'=> 'user',
                 'image'=> '',
             ]
+            ,
+
+            [
+                'username' => 'John',
+                'email'=> 'John@gmail.com',
+                'password'=> bcrypt('John123'),
+                'gender'=> 'female',
+                'role'=> 'user',
+                'image'=> '',
+            ]
             ];
 
         foreach ($users as $user) {
