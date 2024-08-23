@@ -8,6 +8,12 @@
 
   <div class="pagetitle">
     <h1>User List</h1>
+    <div class="card-header">
+      <form action="{{route('account.index')}}">
+        <input type="search" name="search">
+        <button class="btn btn-primary">search</button>
+      </form>
+    </div>
   </div>
   <section class="section dashboard">
     <div class="row">
@@ -27,7 +33,7 @@
                     <th>Action</th>
                   </tr>
                 </thead>
-                <form action="{{route('update-user-status')}}" method="POST">
+
                   @include('components.loginmessages')
                   @csrf
                 @foreach ($usersData as $key=>$user)
@@ -38,14 +44,18 @@
                     <td>{{$user->email}}</td>
                     <td>{{$user->gender}}</td>
                     <td>
-                      <input type="hidden" name="userid" value="{{$user->id}}">
-                      @if ($user->role=="admin")
-                          <button class="btn btn-primary btn-sm" name="admin">Admin</button>
-                        @else
-                        <button class="btn btn-success btn-sm" name="user">User</button>
-                      @endif
+                      <form action="{{ route('update-user-status') }}" method="POST">
+                        @csrf
+                        <input type="hidden" name="userid" value="{{ $user->id }}">
+                        <button class="btn {{ $user->role == 'admin' ? 'btn-primary' : 'btn-success' }} btn-sm" 
+                                name="{{ $user->role }}">
+                            {{ ucfirst($user->role) }}
+                        </button>
+                    </form>
                     </td>
-                    <td>{{$user->image}}</td>
+                    <td>
+                      {{$user->image}}        
+                    </td>
                     <td>{{$user->created_at->diffForHumans()}}</td>
                     @if(auth()->user()->role=='admin')
                     <td><a href="{{route('delete-users', $user->id)}}" 
@@ -56,7 +66,6 @@
                   </tr>
                 </tbody>
                 @endforeach
-              </form>
               </table>
           </div>
         </div>

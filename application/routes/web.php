@@ -24,4 +24,5 @@ Route::group(['namespace'=>'Backend','prefix'=>'company-backend','middleware'=>'
         Route::any('users-list',[UserController::class,'index'])->name('account.index');
         Route::any('delete-users/{id}',[UserController::class,'delete'])->name('delete-users');
     });
+    Route::resource('manage-category','\App\Http\Controllers\Backend\CategoryController');
 });

@@ -1,7 +1,6 @@
 <?php
 
 namespace App\Http\Controllers\Backend;
-
 use App\Http\Controllers\Controller;
 use App\Models\User\User;
 use Illuminate\Http\Request;
@@ -11,10 +10,20 @@ class UserController extends Controller
 {
     protected $pagePath = 'pages.backend.';
 
-    public function index(){
-        $userID = auth()->user()->id;
-        $usersData = User::where('id','!=',$userID)->get();
-        return view($this->pagePath.'users.index',compact('usersData'));
+    public function index(Request $request){
+        $criteria = $request->get('search');
+        if($criteria){
+            $usersData = User::where('username','like','%'.$criteria.'%')
+            ->orWhere('email','=',$criteria)
+            ->orWhere('gender','=',$criteria)
+            ->get();
+            return view($this->pagePath.'users.index',compact('usersData'));
+        }else{
+            $userID = auth()->user()->id;
+            $usersData = User::where('id','!=',$userID)->get();
+            return view($this->pagePath.'users.index',compact('usersData'));
+        }
+
     }
 
     private function deleteFile($userId){
@@ -27,8 +36,8 @@ class UserController extends Controller
             }else{
                 return true;
             }
-        
     }
+
     public function account(Request $request){
         if($request->isMethod('get')){
             // $user = auth()->user();
