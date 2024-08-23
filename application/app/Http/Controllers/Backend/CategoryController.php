@@ -29,7 +29,6 @@ class CategoryController extends Controller
         // }
     }
 
-
     public function create()
     {
         return view($this->pagePath. 'category.create');
@@ -50,33 +49,37 @@ class CategoryController extends Controller
         }
     }
 
-    /**
-     * Display the specified resource.
-     */
+
     public function show(string $id)
     {
-
+        $catData = Category::find($id);
+        return view($this->pagePath. 'category.show',compact('catData'));
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     */
+
     public function edit(string $id)
     {
-        //
+        $category = Category::find($id);
+        return view($this->pagePath. 'category.update',compact('category'));
     }
 
-    /**
-     * Update the specified resource in storage.
-     */
+
     public function update(Request $request, string $id)
     {
-        //
+        $category = $request->validate([
+            'name'=> 'required|unique:categories,name,'
+        ]);
+        try {
+            Category::find($id)->update($category);
+            return redirect()->back()->with('success','category updated sucessfully');
+        }
+        catch(\Exception $e){
+            return redirect()->back()->with('error','something went wrong');
+        }
+
     }
 
-    /**
-     * Remove the specified resource from storage.
-     */
+
     public function destroy(string $id)
     {
         $findNews = News::where('category_id',$id)->count();

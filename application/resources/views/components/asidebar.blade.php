@@ -31,7 +31,7 @@
 
           <li>
             <a href="{{route('manage-category.index')}}">
-              <i class="bi bi-circle"></i><span>Show</span>
+              <i class="bi bi-circle"></i><span>All category</span>
             </a>
           </li>
 

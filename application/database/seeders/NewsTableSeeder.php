@@ -46,6 +46,14 @@ class NewsTableSeeder extends Seeder
                 'summary'=>'News Summary four',
                 'description'=>'News Description four',
             ],
+            [
+                'category_id'=>4,
+                'user_id'=>3,
+                'title'=>'News Title four demo',
+                'slug'=>'News-Title-four-demo',
+                'summary'=>'News Summary four demo',
+                'description'=>'News Description four demo',
+            ],
 
         ];
 
