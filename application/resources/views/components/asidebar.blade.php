@@ -13,32 +13,28 @@
               <i class="bi bi-circle"></i><span>User List</span>
             </a>
           </li>
-          <li>
-            <a href="users-accordion.html">
-              <i class="bi bi-circle"></i><span>Accordion</span>
-            </a>
-          </li>
         </ul>
       </li>
 
   
       <li class="nav-item">
-        <a class="nav-link collapsed" data-bs-target="#tables-nav" data-bs-toggle="collapse" href="#">
-          <i class="bi bi-layout-text-window-reverse"></i><span>Tables</span><i class="bi bi-chevron-down ms-auto"></i>
+        <a class="nav-link collapsed" data-bs-target="#category-nav" data-bs-toggle="collapse" href="#">
+          <i class="bi bi-layout-text-window-reverse"></i><span>Manage Category</span><i class="bi bi-chevron-down ms-auto"></i>
         </a>
-        <ul id="tables-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
+        <ul id="category-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
+          
           <li>
-            <a href="tables-general.html">
-              <i class="bi bi-circle"></i><span>General Tables</span>
+            <a href="{{route('manage-category.create')}}">
+              <i class="bi bi-circle"></i><span>Add category</span>
             </a>
           </li>
+
           <li>
-            <a href="tables-data.html">
-              <i class="bi bi-circle"></i><span>Data Tables</span>
+            <a href="{{route('manage-category.index')}}">
+              <i class="bi bi-circle"></i><span>Show</span>
             </a>
           </li>
+
         </ul>
       </li>
-
-  
   </aside>
