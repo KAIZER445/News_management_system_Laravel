@@ -8,7 +8,7 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
     
-    return view('pages.backend.welcome');
+    return view('pages.frontend.welcome');
 })->name('welcome');
 
 Route::get('login',[LoginController::class,'login'])->name('login');

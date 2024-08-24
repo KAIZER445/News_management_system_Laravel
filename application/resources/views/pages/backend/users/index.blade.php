@@ -54,7 +54,7 @@
                     </form>
                     </td>
                     <td>
-                      {{$user->image}}        
+                      <img src="{{url($user->image)}}" alt="" style="width:50px">
                     </td>
                     <td>{{$user->created_at->diffForHumans()}}</td>
                     @if(auth()->user()->role=='admin')

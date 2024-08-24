@@ -19,12 +19,14 @@
                 @csrf
                 <div class="form-group mb-4">
                     <label for="category" class="mb-2">category:
-                        <span class="text-danger ps-3" style="font-size: 13px">{{$errors->first('title')}}</span>
                     </label>
                     <select name="category_id" id="category" class="form-control">
                         <option value="">Select Category</option>
                         @foreach ($category as $cat)
-                            <option value="{{$cat->id}}">{{$cat->name}}</option>
+                            <option value="{{$cat->id}}"
+                                {{old('category_id') == $cat->id ? 'selected' : ''}}
+                                >{{$cat->name}}
+                            </option>
                         @endforeach
                     </select>
                 </div>
@@ -38,7 +40,7 @@
                     <label for="slug" class="mb-2">slug:
                         <span class="text-danger ps-3" style="font-size: 13px">{{$errors->first('slug')}}</span>
                     </label>
-                    <input type="text" class="form-control" name="slug" id="slug" value="{{old('slug')}}">
+                    <input type="text" class="form-control" readonly disabled name="slug" id="slug" value="{{old('slug')}}">
                 </div>
                 <div class="form-group mb-4">
                     <label for="image" class="mb-2">image:
