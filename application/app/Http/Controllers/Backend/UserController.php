@@ -8,7 +8,7 @@ use View;
 
 class UserController extends Controller
 {
-    protected $pagePath = 'pages.backend.';
+
 
     public function index(Request $request){
         $criteria = $request->get('search');
@@ -40,8 +40,6 @@ class UserController extends Controller
 
     public function account(Request $request){
         if($request->isMethod('get')){
-            // $user = auth()->user();
-            // return view($this->pagePath.'users.account',compact('username'));
             return view($this->pagePath.'users.account');
         }else{
             $user = auth()->user();

@@ -25,4 +25,5 @@ Route::group(['namespace'=>'Backend','prefix'=>'company-backend','middleware'=>'
         Route::any('delete-users/{id}',[UserController::class,'delete'])->name('delete-users');
     });
     Route::resource('manage-category','\App\Http\Controllers\Backend\CategoryController');
+    Route::resource('manage-news','\App\Http\Controllers\Backend\NewsController');
 });

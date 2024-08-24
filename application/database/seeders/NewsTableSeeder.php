@@ -8,9 +8,7 @@ use App\Models\News\News;
 
 class NewsTableSeeder extends Seeder
 {
-    /**
-     * Run the database seeds.
-     */
+
     public function run(): void
     {
         $newsData = [

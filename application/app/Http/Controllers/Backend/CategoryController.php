@@ -11,22 +11,10 @@ use Illuminate\Support\Facades\DB;
 class CategoryController extends Controller
 {
 
-    protected $pagePath = 'pages.backend.';
-
     public function index()
     {
         $category = Category::all();
         return view($this->pagePath. 'category.index', compact('category'));
-
-        // $news = News::all();
-        // foreach($news as $n){
-        //     echo $n->title;
-        //     echo "<br>";
-        //     echo $n->category->name;
-        //     echo "<br>";
-        //     echo $n->user->username;
-        //     echo "<br>";
-        // }
     }
 
     public function create()
