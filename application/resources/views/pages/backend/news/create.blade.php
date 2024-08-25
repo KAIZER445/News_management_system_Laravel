@@ -40,7 +40,7 @@
                     <label for="slug" class="mb-2">slug:
                         <span class="text-danger ps-3" style="font-size: 13px">{{$errors->first('slug')}}</span>
                     </label>
-                    <input type="text" class="form-control" readonly disabled name="slug" id="slug" value="{{old('slug')}}">
+                    <input type="text" class="form-control" readonly name="slug" id="slug" value="{{old('slug')}}">
                 </div>
                 <div class="form-group mb-4">
                     <label for="image" class="mb-2">image:

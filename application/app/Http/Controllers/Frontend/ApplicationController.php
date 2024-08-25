@@ -3,11 +3,13 @@
 namespace App\Http\Controllers\Frontend;
 
 use App\Http\Controllers\Controller;
+use App\Models\News\News;
 use Illuminate\Http\Request;
 
 class ApplicationController extends Controller
 {
     public function index(){
-        return view('pages.frontend.pages.home.home');
+        $newsData = News::orderBy('id','desc')->get();
+        return view('pages.frontend.pages.home.home',compact('newsData'));
     }
 }
