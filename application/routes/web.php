@@ -3,13 +3,12 @@
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\Backend\DashboardController;
 use App\Http\Controllers\Backend\UserController;
+use App\Http\Controllers\Frontend\ApplicationController;
 use Illuminate\Support\Facades\Route;
 
 
-Route::get('/', function () {
-    
-    return view('pages.frontend.welcome');
-})->name('welcome');
+
+Route::get('/',[ApplicationController::class,'index'])->name('index');
 
 Route::get('login',[LoginController::class,'login'])->name('login');
 Route::post('login', [LoginController::class, 'store'])->name('login.store');
