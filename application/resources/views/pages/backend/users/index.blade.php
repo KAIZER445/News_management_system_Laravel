@@ -10,8 +10,10 @@
     <h1>User List</h1>
     <div class="card-header">
       <form action="{{route('account.index')}}">
-        <input type="search" name="search">
-        <button class="btn btn-primary">search</button>
+        <div class="bg-white border-1 border w-25 d-flex justify-content-between">
+          <input type="search" name="search" class="border-0 bg-transparent">
+          <button class="btn btn-primary rounded-0">search</button>
+        </div>
       </form>
     </div>
   </div>
