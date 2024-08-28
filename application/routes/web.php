@@ -9,6 +9,7 @@ use Illuminate\Support\Facades\Route;
 
 
 Route::get('/',[ApplicationController::class,'index'])->name('index');
+Route::any('news_details/{slug}',[ApplicationController::class,'newsDetails'])->name('news_details');
 
 Route::get('login',[LoginController::class,'login'])->name('login');
 Route::post('login', [LoginController::class, 'store'])->name('login.store');
